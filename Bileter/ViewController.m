@@ -97,7 +97,16 @@ int indexOfCurrentController = 11;
     self.navigationController.leftController = leftOne;
     c.bounceEnabled = NO;
     if (self == [c.viewControllers objectAtIndex:0]) {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NavBarIconLauncher"] style:UIBarButtonItemStylePlain target:self action:@selector(showLeftController)];
+        
+        UIImage *sideMenuImage = [UIImage imageNamed:@"NavBarIconLauncher"];
+        UIButton *sideMenuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        sideMenuButton.bounds = CGRectMake( 0, 0, 30, 30);
+        [sideMenuButton setImage:sideMenuImage forState:UIControlStateNormal];
+        [sideMenuButton addTarget:self
+                 action:@selector(showLeftController)
+       forControlEvents:UIControlEventTouchUpInside];
+        
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:sideMenuButton];
         self.navigationItem.leftBarButtonItem.enabled = YES;
     }
 }
@@ -465,7 +474,7 @@ int indexOfCurrentController = 11;
             [addMeropriyatiyaInitialView addSubview:addUITableView];
             UIImage *faceImage = [UIImage imageNamed:@"callButton.png"];
             UIButton *face = [UIButton buttonWithType:UIButtonTypeCustom];
-            face.bounds = CGRectMake( 0, 0, 33, 33 );
+            face.bounds = CGRectMake( 0, 0, 30, 30);
             [face setImage:faceImage forState:UIControlStateNormal];
             [face addTarget:self
                           action:@selector(callTheNumber)
@@ -510,14 +519,14 @@ int indexOfCurrentController = 11;
             NSLog(@"ANONS");
             UIImage *faceImage = [UIImage imageNamed:@"callButton.png"];
             UIButton *face = [UIButton buttonWithType:UIButtonTypeCustom];
-            face.bounds = CGRectMake( 0, 0, 35, 35 );
+            face.bounds = CGRectMake( 0, 0, 30, 30);
             [face setImage:faceImage forState:UIControlStateNormal];
             [face addTarget:self
                      action:@selector(callTheNumber)
            forControlEvents:UIControlEventTouchUpInside];
             UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:face];
             self.navigationItem.rightBarButtonItem = rightButton;
-            self.navigationItem.title = @"Анонсы";
+            self.navigationItem.title = @"Анонс";
             
             addUITableView.frame = CGRectMake(addMainViewOfInitialNavigatiionController.frame.origin.x + 6, addMainViewOfInitialNavigatiionController.frame.origin.y + 6, addMainViewOfInitialNavigatiionController.frame.size.width - 12, addMainViewOfInitialNavigatiionController.frame.size.height -12);
             [addMainViewOfInitialNavigatiionController addSubview:addUITableView];
@@ -759,27 +768,37 @@ UITableViewCell *cell;
             
             break;
         }
-        case 11:
+        case 11://Анонсы
         {
-                        
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.imageView.image = [UIImage imageNamed:@"aboutS"];
-            UILabel *date = [[UILabel alloc] initWithFrame:CGRectMake(cell.frame.origin.x + 75, cell.frame.origin.y+7, 200, 12)];
             NAAction *action = (NAAction*)[actionsLocal objectAtIndex:indexPath.row];
+            
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            
+            UIImageView *tmpImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"aboutS"]];
+            [cell addSubview:tmpImageView];
+            [tmpImageView setCenter:CGPointMake(43, 43)];
+            
+            cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://www.bileter.ru/view_img.php?id=%@", action.actionImageId]]]];
+            UILabel *date = [[UILabel alloc] initWithFrame:CGRectMake(cell.frame.origin.x + 90, cell.frame.origin.y+7, 180, 12)];
+            [cell addSubview:cell.imageView];
+            
             NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"dd.MM.yyyy HH.mm"];
+            
             NSString *dateString = [dateFormatter stringFromDate:action.actionDate];
             date.text = dateString;
-            date.font = [date.font fontWithSize:10];
+            date.font = [UIFont boldSystemFontOfSize:10.0];
             date.backgroundColor = [UIColor clearColor];
             [cell addSubview:date];
-            CGSize textSize  = [action.actionTitle sizeWithFont:[UIFont systemFontOfSize:12.0f] constrainedToSize:CGSizeMake(210, 1000.0f)];
-            UIView *labelBG = [[UIView alloc]initWithFrame:CGRectMake(cell.frame.origin.x + 60, cell.frame.origin.y + 20, 210, textSize.height)];
-            labelBG.backgroundColor = [UIColor yellowColor];
+            
+            CGSize textSize  = [action.actionTitle sizeWithFont:[UIFont systemFontOfSize:12.0f] constrainedToSize:CGSizeMake(185, 1000.0f)];
+            UIView *labelBG = [[UIView alloc]initWithFrame:CGRectMake(cell.frame.origin.x + 90, cell.frame.origin.y + 20, textSize.width + 10, textSize.height + 6)];
+            labelBG.backgroundColor = [UIColor colorWithRed:253.0f/255.0f green:217.0f/255.0f blue:17.0f/255.0f alpha:1.0f];
             [labelBG.layer setCornerRadius:5.0];
             [labelBG.layer setMasksToBounds:YES];
             [cell addSubview:labelBG];
-            UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(labelBG.frame.origin.x + 15,labelBG.frame.origin.y, labelBG.frame.size.width - 20, labelBG.frame.size.height)];
+            
+            UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(labelBG.frame.origin.x + 5,labelBG.frame.origin.y, labelBG.frame.size.width - 5, labelBG.frame.size.height)];
             title.backgroundColor = [UIColor clearColor];
             title.numberOfLines = 2;
             title.font = [title.font fontWithSize:12];
@@ -861,7 +880,7 @@ UITableViewCell *cell;
 
 - (IBAction)addActionPlaceSortButtonClick:(id)sender {
     NAPlacesViewController *controller = [[NAPlacesViewController alloc] initWithNibName:@"NAPlacesViewController" bundle:nil];
-    controller.whatToSet =0;
+    controller.whatToSet = 0;
     [self.navigationController pushViewController:controller animated:YES];
 }
 @end

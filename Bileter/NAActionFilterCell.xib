@@ -45,7 +45,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{12, 13}, {297, 29}}</string>
 								<reference key="NSSuperview" ref="653496198"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="900951957"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -92,7 +91,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{12, 51}, {297, 29}}</string>
 								<reference key="NSSuperview" ref="653496198"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="833131968"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -124,7 +122,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{12, 87}, {297, 29}}</string>
 								<reference key="NSSuperview" ref="653496198"/>
-								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -149,7 +146,6 @@
 						</array>
 						<string key="NSFrameSize">{320, 129}</string>
 						<reference key="NSSuperview" ref="97228556"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="958341927"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -165,7 +161,6 @@
 				</array>
 				<string key="NSFrameSize">{320, 130}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="653496198"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -586,224 +581,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">28</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">CLLocationManager</string>
-					<string key="superclassName">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/CLLocationManager.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NAActionFilterCell</string>
-					<string key="superclassName">UITableViewCell</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="categoryButton">UIButton</string>
-						<string key="dateButton">UIButton</string>
-						<string key="placeButton">UIButton</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="categoryButton">
-							<string key="name">categoryButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="dateButton">
-							<string key="name">dateButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="placeButton">
-							<string key="name">placeButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/NAActionFilterCell.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSLayoutConstraint</string>
-					<string key="superclassName">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/NSLayoutConstraint.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">ViewController</string>
-					<string key="superclassName">UIViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="addActionCategorySortButtonClick:">id</string>
-						<string key="addActionPlaceSortButtonClick:">id</string>
-						<string key="addAuthentificationViewMissButtonClick:">id</string>
-						<string key="addAuthentificationViewRegistrationButtonClick:">id</string>
-						<string key="addAutherntificationViewLoginButtonClick:">id</string>
-						<string key="addMeropriyatiyaViewDateButtonClick:">id</string>
-						<string key="addSettingsViewChangePasswordButtonClisk:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="addActionCategorySortButtonClick:">
-							<string key="name">addActionCategorySortButtonClick:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="addActionPlaceSortButtonClick:">
-							<string key="name">addActionPlaceSortButtonClick:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="addAuthentificationViewMissButtonClick:">
-							<string key="name">addAuthentificationViewMissButtonClick:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="addAuthentificationViewRegistrationButtonClick:">
-							<string key="name">addAuthentificationViewRegistrationButtonClick:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="addAutherntificationViewLoginButtonClick:">
-							<string key="name">addAutherntificationViewLoginButtonClick:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="addMeropriyatiyaViewDateButtonClick:">
-							<string key="name">addMeropriyatiyaViewDateButtonClick:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="addSettingsViewChangePasswordButtonClisk:">
-							<string key="name">addSettingsViewChangePasswordButtonClisk:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="addAuthentificaitonEmailMobilePhoneTextField">UITextField</string>
-						<string key="addAuthentificationPasswordTextField">UITextField</string>
-						<string key="addAuthentificationView">UIView</string>
-						<string key="addCategoryButton">UIButton</string>
-						<string key="addMainViewOfInitialNavigatiionController">UIView</string>
-						<string key="addMeropriyatiyaInitialView">UIView</string>
-						<string key="addMeropriyatiyaViewDateLabel">UILabel</string>
-						<string key="addMeropriyatiyaViewSearchBar">UISearchBar</string>
-						<string key="addRegistrationView">UIView</string>
-						<string key="addRegistrationViewEmail">UITextField</string>
-						<string key="addRegistrationViewFatherName">UITextField</string>
-						<string key="addRegistrationViewMobilePhone">UITextField</string>
-						<string key="addRegistrationViewName">UITextField</string>
-						<string key="addRegistrationViewNavigationBar">UINavigationBar</string>
-						<string key="addRegistrationViewNavigationBarItem">UINavigationItem</string>
-						<string key="addRegistrationViewPassword1">UITextField</string>
-						<string key="addRegistrationViewPassword2">UITextField</string>
-						<string key="addRegistrationViewSurname">UITextField</string>
-						<string key="addRegistrationViewSwitch">UISwitch</string>
-						<string key="addSearchBar">UISearchBar</string>
-						<string key="addSettingsInitialView">UIView</string>
-						<string key="addTabBar">UITabBar</string>
-						<string key="addUITableView">UITableView</string>
-						<string key="locationManager">CLLocationManager</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="addAuthentificaitonEmailMobilePhoneTextField">
-							<string key="name">addAuthentificaitonEmailMobilePhoneTextField</string>
-							<string key="candidateClassName">UITextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addAuthentificationPasswordTextField">
-							<string key="name">addAuthentificationPasswordTextField</string>
-							<string key="candidateClassName">UITextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addAuthentificationView">
-							<string key="name">addAuthentificationView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addCategoryButton">
-							<string key="name">addCategoryButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addMainViewOfInitialNavigatiionController">
-							<string key="name">addMainViewOfInitialNavigatiionController</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addMeropriyatiyaInitialView">
-							<string key="name">addMeropriyatiyaInitialView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addMeropriyatiyaViewDateLabel">
-							<string key="name">addMeropriyatiyaViewDateLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addMeropriyatiyaViewSearchBar">
-							<string key="name">addMeropriyatiyaViewSearchBar</string>
-							<string key="candidateClassName">UISearchBar</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addRegistrationView">
-							<string key="name">addRegistrationView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addRegistrationViewEmail">
-							<string key="name">addRegistrationViewEmail</string>
-							<string key="candidateClassName">UITextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addRegistrationViewFatherName">
-							<string key="name">addRegistrationViewFatherName</string>
-							<string key="candidateClassName">UITextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addRegistrationViewMobilePhone">
-							<string key="name">addRegistrationViewMobilePhone</string>
-							<string key="candidateClassName">UITextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addRegistrationViewName">
-							<string key="name">addRegistrationViewName</string>
-							<string key="candidateClassName">UITextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addRegistrationViewNavigationBar">
-							<string key="name">addRegistrationViewNavigationBar</string>
-							<string key="candidateClassName">UINavigationBar</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addRegistrationViewNavigationBarItem">
-							<string key="name">addRegistrationViewNavigationBarItem</string>
-							<string key="candidateClassName">UINavigationItem</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addRegistrationViewPassword1">
-							<string key="name">addRegistrationViewPassword1</string>
-							<string key="candidateClassName">UITextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addRegistrationViewPassword2">
-							<string key="name">addRegistrationViewPassword2</string>
-							<string key="candidateClassName">UITextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addRegistrationViewSurname">
-							<string key="name">addRegistrationViewSurname</string>
-							<string key="candidateClassName">UITextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addRegistrationViewSwitch">
-							<string key="name">addRegistrationViewSwitch</string>
-							<string key="candidateClassName">UISwitch</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addSearchBar">
-							<string key="name">addSearchBar</string>
-							<string key="candidateClassName">UISearchBar</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addSettingsInitialView">
-							<string key="name">addSettingsInitialView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addTabBar">
-							<string key="name">addTabBar</string>
-							<string key="candidateClassName">UITabBar</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addUITableView">
-							<string key="name">addUITableView</string>
-							<string key="candidateClassName">UITableView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="locationManager">
-							<string key="name">locationManager</string>
-							<string key="candidateClassName">CLLocationManager</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/ViewController.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
