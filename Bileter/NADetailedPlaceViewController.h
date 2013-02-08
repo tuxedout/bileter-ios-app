@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NAMapViewController.h"
 #import "NAPlaceDetailCell.h"
-
+#import "NATabBarViewController.h"
 @interface NADetailedPlaceViewController : UIViewController
 {
     NAPlaceFound *place;

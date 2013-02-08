@@ -55,6 +55,12 @@
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
     [locationManager startUpdatingLocation];
     // Do any additional setup after loading the view from its nib.
+    NATabBarViewController *tabBar = [[NATabBarViewController alloc] initWithNibName:@"NATabBarViewController" bundle:nil];
+    tabBar.view.frame = CGRectMake(0,self.view.frame.size.height - 2, tabBar.view.frame.size.width, tabBar.view.frame.size.height);
+    [tabBar setSelectedItem:1];
+    [self.view addSubview:tabBar.view];
+    [tabBar didMoveToParentViewController:self];
+    [self addChildViewController:tabBar];
 }
 
 - (void)didReceiveMemoryWarning
@@ -210,7 +216,8 @@ UITableViewCell *cell;
 - (void)delegateFromMyAfNetworkingReturnsPlaceInfoObject:(NAPlace *)placeInMethod
 {
     [self setPlaceDetailed: placeInMethod];
-    [addUITableView reloadData];
+    //[addUITableView reloadData];
+    [addUITableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
     [progressAlert dismissWithClickedButtonIndex:0 animated:YES];
 }
 @end

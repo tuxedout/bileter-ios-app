@@ -59,7 +59,8 @@
 {
     placesLocal = [[NSArray alloc] initWithArray:places];
     [progressAlert dismissWithClickedButtonIndex:0 animated:YES];
-    [addUITableView reloadData];
+    //[addUITableView reloadData];
+    [addUITableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark UITableViewDelegate

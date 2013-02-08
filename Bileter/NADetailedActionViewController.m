@@ -49,6 +49,12 @@
     layer.borderColor = [[UIColor grayColor] CGColor];
     layer.cornerRadius = 10;
     layer.masksToBounds = YES;
+    
+    NATabBarViewController *tabBar = [[NATabBarViewController alloc] initWithNibName:@"NATabBarViewController" bundle:nil];
+    tabBar.view.frame = CGRectMake(0,self.view.frame.size.height - 2, tabBar.view.frame.size.width, tabBar.view.frame.size.height);
+    [self.view addSubview:tabBar.view];
+    [tabBar didMoveToParentViewController:self];
+    [self addChildViewController:tabBar];
 }
 
 - (void)didReceiveMemoryWarning
@@ -224,7 +230,8 @@ UITableViewCell *cell;
 - (void)delegateFromMyAfNetworkingReturnsActionDetailedInfoObject:(NAActionDetailed *)actionInMethod
 {
     [self setActionDetailed: actionInMethod];
-    [addUITableView reloadData];
+    [addUITableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    //[addUITableView reloadData];
     [progressAlert dismissWithClickedButtonIndex:0 animated:YES];
 }
 

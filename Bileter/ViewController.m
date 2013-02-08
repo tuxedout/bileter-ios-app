@@ -30,7 +30,7 @@
 @synthesize alertToDisplayRegistration;
 @synthesize addMainViewOfInitialNavigatiionController;
 @synthesize addSettingsInitialView;
-@synthesize addTabBar;
+
 @synthesize addMeropriyatiyaInitialView;
 @synthesize addMeropriyatiyaViewDateLabel;
 @synthesize addUITableView;
@@ -40,7 +40,8 @@
 
 NSArray *actionsLocal;
 NSArray *placesLocal;
-int indexOfCurrentController = 11;
+int indexOfCurrentController = 10;
+NATabBarViewController *tabBar;
 - (void)viewDidLoad
 {
   
@@ -68,6 +69,14 @@ int indexOfCurrentController = 11;
     [super viewDidLoad];
     [[addSearchBar.subviews objectAtIndex:0]removeFromSuperview];
 
+    
+    UISwipeGestureRecognizer* rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showLeftController)];
+    rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    [addMainViewOfInitialNavigatiionController addGestureRecognizer:rightSwipeGestureRecognizer];
+    // Setup a left swipe gesture recognizer
+    UISwipeGestureRecognizer* leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showLeftController)] ;
+    leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    [addMainViewOfInitialNavigatiionController addGestureRecognizer:leftSwipeGestureRecognizer];
     CALayer *layer = addUITableView.layer;
     layer.borderWidth = 1;
     layer.borderColor = [[UIColor grayColor] CGColor];
@@ -86,6 +95,12 @@ int indexOfCurrentController = 11;
         [[[self navigationController] view] addSubview:addAuthentificationView];
     }
     [SingletonForGlobalVariables sharedMySingleton].mainController = self;
+    
+    tabBar = [[NATabBarViewController alloc] initWithNibName:@"NATabBarViewController" bundle:nil];
+    tabBar.view.frame = CGRectMake(0,self.view.frame.size.height - 2*tabBar.view.frame.size.height + 6, tabBar.view.frame.size.width, tabBar.view.frame.size.height + 60);
+    [self.view addSubview:tabBar.view];
+    [tabBar didMoveToParentViewController:self];
+    [self addChildViewController:tabBar];
 }
 
 
@@ -132,8 +147,8 @@ int indexOfCurrentController = 11;
 }
 - (IBAction)addAuthentificationViewMissButtonClick:(id)sender {
     [addAuthentificationView removeFromSuperview];
-    [self pushAControllerWithIndex:11 source:1];
-    [addTabBar setSelectedItem:[[addTabBar items]objectAtIndex:0]];
+    [self pushAControllerWithIndex:10 source:1];
+    [tabBar.addTabBar setSelectedItem:[[tabBar.addTabBar items]objectAtIndex:0]];
 }
 
 - (IBAction)addAutherntificationViewLoginButtonClick:(id)sender {
@@ -341,14 +356,16 @@ int indexOfCurrentController = 11;
 - (void)delegateFromMyAfNetworkingReturnsArrayOfActions:(NSArray *)actions
 {
     actionsLocal = [[NSArray alloc]initWithArray:actions];
-    [addUITableView reloadData];
+    [addUITableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+   // [ reloadData];
     [alertToDisplayRegistration dismissWithClickedButtonIndex:0 animated:YES];
 }
 - (void)delegateFromMyAfNetworkingReturnsPlacesFoundObject:(NSArray *)places
 {
     placesLocal = [[NSArray alloc]initWithArray:places];
     [alertToDisplayRegistration dismissWithClickedButtonIndex:0 animated:YES];
-    [addUITableView reloadData];
+    [addUITableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    //[addUITableView reloadData];
 }
 - (void)registrationStatus:(NSString *)status code:(int)code
 {
@@ -397,33 +414,32 @@ int indexOfCurrentController = 11;
             NSString *password = [[NSString alloc]initWithString:addAuthentificationPasswordTextField.text];
             [prefs setObject:password forKey:@"password"];
             [addAuthentificationView removeFromSuperview];
-            [self pushAControllerWithIndex:11 source:1];
-            addTabBar.selectedItem = 0;
+            [self pushAControllerWithIndex:10 source:1];
+            tabBar.addTabBar.selectedItem = 0;
         }
-    }
-    
-    
+    }  
 }
 
 -(void)pushAControllerWithIndex:(int)index source:(int)source
 {
+    [self.navigationController popViewControllerAnimated:YES];
     for(UIView *view in addMainViewOfInitialNavigatiionController.subviews)
     {
         [view removeFromSuperview];
     }
-    [self.view addSubview:addTabBar];
     switch (source) {
         case 0: //from left uiTableView
         {
-            for (int i = 0; i < [addTabBar items].count; i++) {
-                if ([[[[addTabBar items] objectAtIndex:i] title] isEqualToString:[[SingletonForGlobalVariables sharedMySingleton].SECTIONS objectAtIndex:index]]) {
+            NSLog(@"herer case 0");
+            for (int i = 0; i < [tabBar.addTabBar items].count; i++) {
+                if ([[[[tabBar.addTabBar items] objectAtIndex:i] title] isEqualToString:[[SingletonForGlobalVariables sharedMySingleton].SECTIONS objectForKey:[NSString stringWithFormat:@"%i", index]]]) {
                     NSLog(@"coincides");
-                    [addTabBar setSelectedItem:[[addTabBar items] objectAtIndex:i]];
+                    [tabBar.addTabBar setSelectedItem:[[tabBar.addTabBar items] objectAtIndex:i]];
                     break;
                 }
                 else
                 {
-                    [addTabBar setSelectedItem:nil];
+                    [tabBar.addTabBar setSelectedItem:nil];
                 }
             }
         [self showLeftController];
@@ -432,6 +448,19 @@ int indexOfCurrentController = 11;
         }
             case 1: // from the tabbar
         {
+            NSLog(@"herer case 1");
+            for (int i = 0; i < [tabBar.addTabBar items].count; i++) {
+                if ([[[[tabBar.addTabBar items] objectAtIndex:i] title] isEqualToString:[[SingletonForGlobalVariables sharedMySingleton].SECTIONS objectForKey:[NSString stringWithFormat:@"%i", index]]]) {
+                    NSLog(@"coincides");
+                    [tabBar.addTabBar setSelectedItem:[[tabBar.addTabBar items] objectAtIndex:i]];
+                    break;
+                }
+                else
+                {
+                    [tabBar.addTabBar setSelectedItem:nil];
+                }
+            }
+
             break;
         }
         default:
@@ -449,7 +478,7 @@ int indexOfCurrentController = 11;
                      action:@selector(pushCategorySelector)
            forControlEvents:UIControlEventTouchUpInside];
             [addMainViewOfInitialNavigatiionController addSubview:addCategoryButton];
-            addUITableView.frame = CGRectMake(addMainViewOfInitialNavigatiionController.frame.origin.x + 7,addCategoryButton.frame.origin.y+ addCategoryButton.frame.size.height + 6, addMainViewOfInitialNavigatiionController.frame.size.width -14, addMainViewOfInitialNavigatiionController.frame.size.height - addSearchBar.frame.size.height - addCategoryButton.frame.size.height -16);
+            addUITableView.frame = CGRectMake(addMainViewOfInitialNavigatiionController.frame.origin.x + 7,addCategoryButton.frame.origin.y+ addCategoryButton.frame.size.height + 6, addMainViewOfInitialNavigatiionController.frame.size.width -14, addMainViewOfInitialNavigatiionController.frame.size.height - addSearchBar.frame.size.height - addCategoryButton.frame.size.height -14);
             [addMainViewOfInitialNavigatiionController addSubview:addUITableView];
             alertToDisplayRegistration = [[UIAlertView alloc]initWithTitle:@"Загрузка данных" message:@"" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
             [alertToDisplayRegistration show];
@@ -470,7 +499,7 @@ int indexOfCurrentController = 11;
             indexOfCurrentController = 1;
             addMeropriyatiyaInitialView.frame = addMainViewOfInitialNavigatiionController.frame;
             [addMeropriyatiyaInitialView addSubview:addSearchBar];[addMainViewOfInitialNavigatiionController addSubview:addMeropriyatiyaInitialView];
-            addUITableView.frame = CGRectMake(addMeropriyatiyaInitialView.frame.origin.x + 7, addMeropriyatiyaInitialView.frame.origin.y + addSearchBar.frame.size.height, addMeropriyatiyaInitialView.frame.size.width -14, addMeropriyatiyaInitialView.frame.size.height - 7);
+            addUITableView.frame = CGRectMake(addMeropriyatiyaInitialView.frame.origin.x + 7, addMeropriyatiyaInitialView.frame.origin.y + addSearchBar.frame.size.height, addMeropriyatiyaInitialView.frame.size.width -14, addMainViewOfInitialNavigatiionController.frame.size.height - 49);
             [addMeropriyatiyaInitialView addSubview:addUITableView];
             UIImage *faceImage = [UIImage imageNamed:@"callButton.png"];
             UIButton *face = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -513,9 +542,9 @@ int indexOfCurrentController = 11;
             
             break;
         }
-            case 11:
+            case 10:
         {
-            indexOfCurrentController = 11;
+            indexOfCurrentController = 10;
             NSLog(@"ANONS");
             UIImage *faceImage = [UIImage imageNamed:@"callButton.png"];
             UIButton *face = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -526,7 +555,7 @@ int indexOfCurrentController = 11;
            forControlEvents:UIControlEventTouchUpInside];
             UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:face];
             self.navigationItem.rightBarButtonItem = rightButton;
-            self.navigationItem.title = @"Анонс";
+            self.navigationItem.title = @"Анонсы";
             
             addUITableView.frame = CGRectMake(addMainViewOfInitialNavigatiionController.frame.origin.x + 6, addMainViewOfInitialNavigatiionController.frame.origin.y + 6, addMainViewOfInitialNavigatiionController.frame.size.width - 12, addMainViewOfInitialNavigatiionController.frame.size.height -12);
             [addMainViewOfInitialNavigatiionController addSubview:addUITableView];
@@ -562,10 +591,9 @@ int indexOfCurrentController = 11;
 #pragma mark UITabBarDelegateMethods
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
-    
-    
-    NSLog(@"%i %@ %i" , [[tabBar items] indexOfObject:item], item.title, [[SingletonForGlobalVariables sharedMySingleton].SECTIONS indexOfObject:item.title]);
-    [self pushAControllerWithIndex:[[SingletonForGlobalVariables sharedMySingleton].SECTIONS indexOfObject:item.title] source:1];
+    NSArray *temp = [[SingletonForGlobalVariables sharedMySingleton].SECTIONS allKeysForObject:[NSString stringWithFormat:@"%@", item.title]];
+    NSString *key = [temp objectAtIndex:0];
+    [self pushAControllerWithIndex:[key integerValue] source:1];
 }
 
 
@@ -768,7 +796,7 @@ UITableViewCell *cell;
             
             break;
         }
-        case 11://Анонсы
+        case 10://Анонсы
         {
             NAAction *action = (NAAction*)[actionsLocal objectAtIndex:indexPath.row];
             
@@ -842,7 +870,7 @@ UITableViewCell *cell;
             
             break;
         }
-            case 11:
+            case 10:
         {
             NADetailedActionViewController *controller = [[NADetailedActionViewController alloc] initWithNibName:@"NADetailedActionViewController" bundle:nil];
             controller.action = [actionsLocal objectAtIndex:indexPath.row];

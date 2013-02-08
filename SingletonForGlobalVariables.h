@@ -14,7 +14,7 @@
     NSString* NUMBER_TO_CALL;
     NSString* USER_ID;
     UIViewController *mainController;
-    NSArray *SECTIONS;
+    NSDictionary *SECTIONS;
     NSArray *CATEGORIES;
     NSDictionary *GENRELIST;
     NSDictionary *METROLIST;
@@ -31,7 +31,7 @@
 @property (nonatomic, retain) NSString *NUMBER_TO_CALL;
 @property (nonatomic, retain) NSString *USER_ID;
 @property (nonatomic, retain) UIViewController *mainController;
-@property (nonatomic, retain) NSArray *SECTIONS;
+@property (nonatomic, retain) NSDictionary *SECTIONS;
 @property (nonatomic, retain) NSArray *CATEGORIES;
 @property (nonatomic, retain) NSString *CATEGORY_TO_SORT_PLACES;
 @property (nonatomic, retain) NSString *CATEGORY_TO_SORT_ACTIONS;

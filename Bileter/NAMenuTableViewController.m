@@ -43,20 +43,19 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = [[SingletonForGlobalVariables sharedMySingleton].SECTIONS objectAtIndex:indexPath.row];
+    cell.textLabel.text = [[SingletonForGlobalVariables sharedMySingleton].SECTIONS objectForKey:[NSString stringWithFormat:@"%i", indexPath.row]];
     cell.backgroundView =  [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:@"cellBG.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0] ];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.backgroundColor = [UIColor clearColor];
     switch (indexPath.row) {
         case 0:
         {
-            NSLog(@"plosadkiS");
             cell.imageView.image = [UIImage imageNamed:@"ploshadkiS.png"];
             break;
         }
         case 1:
         {
-            cell.imageView.image = [UIImage imageNamed:@"meropriyatiyaS"];
+            cell.imageView.image = [UIImage imageNamed:@"merRed.png"];
             break;
         }
         case 2:
@@ -175,6 +174,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//    NSArray *temp = [[SingletonForGlobalVariables sharedMySingleton].SECTIONS allKeysForObject:[NSString stringWithFormat:@"%@", item.title]];
+//    NSString *key = [temp objectAtIndex:0];
+//    [self pushAControllerWithIndex:[key integerValue] source:1];
+//    
+//    
     ViewController *view = (ViewController *)[SingletonForGlobalVariables sharedMySingleton].mainController;
     [view pushAControllerWithIndex:indexPath.row source:0];
 }

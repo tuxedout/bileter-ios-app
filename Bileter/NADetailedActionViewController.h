@@ -10,6 +10,7 @@
 #import "NAAction.h"
 #import "NAActionDetailCell.h"
 #import "NAMapViewController.h"
+#import "NATabBarViewController.h"
 @interface NADetailedActionViewController : UIViewController <MyAFNetworkingProtocolDelegate>
 {
     NAAction *action;

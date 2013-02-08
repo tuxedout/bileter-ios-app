@@ -16,6 +16,7 @@
 #import "NAPlacesViewController.h"
 #import "NADetailedPlaceViewController.h"
 #import "NAActionFilterCell.h"
+#import "NATabBarViewController.h"
 @interface ViewController : UIViewController <DNBSwipyNavigationControllerDelegate, MyAFNetworkingProtocolDelegate,UITextFieldDelegate, UITabBarDelegate,UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 {
      UIAlertView *alertToDisplayRegistration;
@@ -24,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *addMeropriyatiyaViewSearchBar;
 @property (strong, nonatomic) IBOutlet UISearchBar *addSearchBar;
 @property (strong, nonatomic) IBOutlet UIButton *addCategoryButton;
-@property (weak, nonatomic) IBOutlet UITabBar *addTabBar;
+
 - (IBAction)addAuthentificationViewMissButtonClick:(id)sender;
 - (IBAction)addAutherntificationViewLoginButtonClick:(id)sender;
 - (IBAction)addAuthentificationViewRegistrationButtonClick:(id)sender;

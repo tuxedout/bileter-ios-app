@@ -33,7 +33,22 @@ static SingletonForGlobalVariables * sharedMySingleton = NULL;
         @"";
         sharedMySingleton.USER_ID=@"";
         sharedMySingleton.NUMBER_TO_CALL = @"+78123808050";
-        sharedMySingleton.SECTIONS = [[NSArray alloc] initWithObjects:@"Площадки",@"Мероприятия",@"Кассы",@"Заказы",@"Избранное",@"Настройки",@"Билетёр",@"Площадки",@"Акции",@"Новости",@"Популярное",@"Анонс",@"Полезная информация",@"Правила заказа",@"Контакты",@"О билетере", nil];
+        sharedMySingleton.SECTIONS = [[NSDictionary alloc] initWithObjectsAndKeys:   @"Площадки",@"0",
+                                      @"Мероприятия",@"1",
+                                      @"Кассы",@"2",
+                                      @"Заказы",@"3",
+                                      @"Избранное",@"4",
+                                      @"Настройки",@"5",
+                                      @"Билетёр",@"6",
+                                      @"Акции",@"7",
+                                      @"Новости",@"8",
+                                      @"Популярное",@"9",
+                                      @"Анонсы",@"10",
+                                      @"Полезная информация",@"11",
+                                      @"Правила заказа",@"12",
+                                      @"Контакты",@"13",
+                                      @"О билетере",@"14",
+                                      nil];
         sharedMySingleton.CATEGORIES = [[NSArray alloc]init];
         sharedMySingleton.DISTRICTLIST = [[NSDictionary alloc]init];
         sharedMySingleton.METROLIST =[[NSDictionary alloc]init];

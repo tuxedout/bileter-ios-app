@@ -243,44 +243,43 @@ static float const kPAN_MAX_VELOCITY_THRESHOLD = 3000;
     void (^snap)() = nil;
     switch (position) {
         case ControllerPositionRegular: {
-                           snap = ^{
-                                   CGRect r = self.container.frame;
-                                   r.origin.x = 0;
-                                   r.origin.y = 0;
-                                   self.container.frame = r;
-                               };
-                       }   break;
-                   case ControllerPositionLeft: {
-                           if (self.rightControllerEnabled) {
-                                   snap = ^{
-                                           CGRect r = self.container.frame;
-                                           r.origin.x = 0-self.rightController.view.frame.size.width;
-                        
-                                           self.container.frame = r;
-                                           [self.rightController.view.superview insertSubview:self.rightController.view atIndex:[self.rightController.view.superview.subviews indexOfObject:self.container]-1];
-                                       };
-                               }
-                       }   break;
-                   case ControllerPositionRight: {
-                           if (self.leftControllerEnabled) {
-                                   snap = ^{
-                                           CGRect r = self.container.frame;
-                                           r.origin.x = 0+self.leftController.view.frame.size.width;
-                                           self.container.frame = r;
-                                           self.leftController.view.frame = CGRectMake(self.leftController.view.frame.origin.x, 20, self.leftController.view.frame.size.width, self.leftController.view.frame.size.height);
-                                           [self.leftController.view.superview insertSubview:self.leftController.view atIndex:[self.leftController.view.superview.subviews indexOfObject:self.container]-1];
-                                       };
-                               }
-                       }   break;
-                       
-           }
-       
-       [UIView animateWithDuration:.20 delay:0.0 
-                               options:UIViewAnimationOptionCurveEaseOut|UIViewAnimationOptionBeginFromCurrentState animations:snap completion:^(BOOL finished) {
-                                       
-                                   }];
+            snap = ^{
+                CGRect r = self.container.frame;
+                r.origin.x = 0;
+                r.origin.y = 0;
+                self.container.frame = r;
+            };
+        }   break;
+        case ControllerPositionLeft: {
+            if (self.rightControllerEnabled) {
+                snap = ^{
+                    CGRect r = self.container.frame;
+                    r.origin.x = 0-self.rightController.view.frame.size.width;
+                    
+                    self.container.frame = r;
+                    [self.rightController.view.superview insertSubview:self.rightController.view atIndex:[self.rightController.view.superview.subviews indexOfObject:self.container]-1];
+                };
+            }
+        }   break;
+        case ControllerPositionRight: {
+            if (self.leftControllerEnabled) {
+                snap = ^{
+                    CGRect r = self.container.frame;
+                    r.origin.x = 0+self.leftController.view.frame.size.width;
+                    self.container.frame = r;
+                    self.leftController.view.frame = CGRectMake(self.leftController.view.frame.origin.x, 20, self.leftController.view.frame.size.width, self.view.frame.size.height - 20);
+                    [self.leftController.view.superview insertSubview:self.leftController.view atIndex:[self.leftController.view.superview.subviews indexOfObject:self.container]-1];
+                };
+            }
+        }   break;
+            
+    }
+    
+    [UIView animateWithDuration:.20 delay:0.0
+                        options:UIViewAnimationOptionCurveEaseOut|UIViewAnimationOptionBeginFromCurrentState animations:snap completion:^(BOOL finished) {
+                            
+                        }];
 }
-
 
 
 - (void)completePanWithPoint:(CGPoint)point andSpeed:(float)speed {
