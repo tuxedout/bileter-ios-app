@@ -120,10 +120,18 @@ NSMutableArray *idsToRequestTheTimeline;
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
         UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Cannot close session" message:[NSString stringWithFormat:@"Report about error please %@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
-        NSLog(@"1 %@,2 %@,3 %@" ,  response, error, [JSON JSONRepresentation]);
+        NSLog(@"Changed 1 %@,2 %@,3 %@" ,  response, error, [JSON JSONRepresentation]);
     }];
+    
+    
+    
+    
+    
     [operation start];
 }
+
+
+
 
 -(void)getPlaceInfo:(NSString*)place
 {
